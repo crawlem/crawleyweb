@@ -12,7 +12,8 @@ layout: default
 			<ol><% for post in @getCollection("usa2008").toJSON(): %>
 				<li<%= if post.id is @document.id then ' class=active' %>><a href="<%= post.url %>"><%= @formatDate(post.date, "Do MMM") %></a></li><% end %>
 			</ol>
-			<div id="photos"></div>
+			<div id="photos">
+			</div>
 		</div>
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
