@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+	<title>Mark Crawley | Journal | October 2008 | Road Trip!</title>
+	<link rel="stylesheet" href="/css/vendor/unsemantic-grid-responsive-no-ie7.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="post">
+	<div class="grid-parent">
+		<header class="grid-container">
+			<div class="grid-100">
+				<h1>Mark Crawley</h1>
+			</div>
+			<ul>
+				<li class="grid-10"><a href="/">Home</a></li>
+				<li class="grid-15"><a href="/journal/">Scribblings</a></li>
+				<li class="grid-10"><a href="/bunkercam/">Playground</a></li>
+			</ul>
+		</header>
+		<div class="grid-container">
+		<div class="content grid-70">
+			<h1>Road Trip!</h1>
+			<h2>Sunday 19th October 2008</h2>
+			<p>I didn&#39;t sleep great and got up about 0900 - I was really excited about driving to Boston today! We got packed up and left the Hilton around 1000, and walked down to Hertz on W 34th. It only took ten minutes, and there was hardly anyone or any traffic about. I checked in and picked up a grey Toyota Corolla complete with Hertz &quot;NeverLost&quot; sat nav, and auto gearbox.</p>
+<p>The NeverLost proved crap and we used our TomTom, which did an amazing job! We drove over to the West side, then North, taking the Cross Bronx Expressway to get out of NYC into Connecticut on I95. Driving was so easy, partly due to auto gearbox but also there just wasn&#39;t any traffic to speak of. Cruise control all the way. We passed a beautiful view of the sea and I decided to stop at Sherwood Island State Park. It was absolutely gorgeous but only 50 degrees Fahrenheit so we didn&#39;t stay long! </p>
+<p>I set TomTom to go via Plymouth on the East cost so we could see some sea on our drive. We stopped a couple more times (one for gas - only $26 for a tank!) and made it to Boston around 1830. The hotel (Radisson) is great, a suite with lovely views of the city.</p>
+<p>We walked over the road for a Chinese at P F Changs, which was delicious! Then a quick stroll around the Common before we took a late night (2100) swim at the hotel!</p>
+
+		</div>
+		<div class="sidebar grid-30">
+			<h2>USA 2008</h2>
+			<ol>
+				<li><a href="/2008/10/10.html">10th Oct</a></li>
+				<li><a href="/2008/10/11.html">11th Oct</a></li>
+				<li><a href="/2008/10/12.html">12th Oct</a></li>
+				<li><a href="/2008/10/13.html">13th Oct</a></li>
+				<li><a href="/2008/10/14.html">14th Oct</a></li>
+				<li><a href="/2008/10/15.html">15th Oct</a></li>
+				<li><a href="/2008/10/16.html">16th Oct</a></li>
+				<li><a href="/2008/10/17.html">17th Oct</a></li>
+				<li><a href="/2008/10/18.html">18th Oct</a></li>
+				<li class=active><a href="/2008/10/19.html">19th Oct</a></li>
+				<li><a href="/2008/10/20.html">20th Oct</a></li>
+				<li><a href="/2008/10/21.html">21st Oct</a></li>
+				<li><a href="/2008/10/22.html">22nd Oct</a></li>
+				<li><a href="/2008/10/23.html">23rd Oct</a></li>
+				<li><a href="/2008/10/24.html">24th Oct</a></li>
+			</ol>
+			<div id="photos"></div>
+		</div>
+	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+	var jqxhr = $.ajax({
+			url: "http://ycpi.api.flickr.com/services/rest/?method=flickr.photos.search&user_id=90014740@N00&min_taken_date=2008-10-19 00:00:00&max_taken_date=2008-10-19 23:59:59&sort=date-taken-asc&format=json&nojsoncallback=1&api_key=6b44b7eaf862acb6abf898f5bc3882fb",
+			dataType: "json"
+		})
+	    .done(function(data) {
+	    	var photoType = "s"; // small square
+	    	// if (data.photos.photo.length <= 5) {
+	    	// 	photoType = "q"; // larger square
+	    	// }
+	    	var list = $("<ul></ul>");
+			$.each(data.photos.photo, function (i, photo) {
+				var img = $("<img/>")
+					.attr("src", "http://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + photoType + ".jpg")
+					.attr("alt", photo.title);
+				var link = $("<a/>")
+					.attr("href", "http://www.flickr.com/photos/crawlem/" + photo.id);
+				var fullLink = link.append(img);
+				var li = $("<li/>").append(fullLink);
+				$(list).append(li);
+			});
+			if (data.photos.photo.length > 0) {
+				$("#photos").append("<h2>Photos</h2>");
+				$("#photos").append(list);
+			}
+	    })
+	    .fail(function(o, s) {
+	    	alert(s);
+	    });
+	</script>
+		<footer class="grid-container">
+			<div class="grid-80">&copy; Copyright Mark Crawley 2007-2013</div>
+			<div class="social grid-20">F T E</div>
+		</footer>
+	</div>
+	<script>
+		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+		e.src='//www.google-analytics.com/analytics.js';
+		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+		ga('create','UA-6098332-2');ga('send','pageview');
+	</script>
+</body>
+</html>

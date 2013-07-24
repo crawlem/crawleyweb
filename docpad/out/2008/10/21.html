@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+	<title>Mark Crawley | Journal | October 2008 | Shopping Market</title>
+	<link rel="stylesheet" href="/css/vendor/unsemantic-grid-responsive-no-ie7.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="post">
+	<div class="grid-parent">
+		<header class="grid-container">
+			<div class="grid-100">
+				<h1>Mark Crawley</h1>
+			</div>
+			<ul>
+				<li class="grid-10"><a href="/">Home</a></li>
+				<li class="grid-15"><a href="/journal/">Scribblings</a></li>
+				<li class="grid-10"><a href="/bunkercam/">Playground</a></li>
+			</ul>
+		</header>
+		<div class="grid-container">
+		<div class="content grid-70">
+			<h1>Shopping Market</h1>
+			<h2>Tuesday 21st October 2008</h2>
+			<p>We got up really late today (1300) and decided to head over to Downtown Crossing, the other main shopping area of Boston. We walked through Boston Common past the State House, which was beautiful. We stopped for a bagel at Finagle &amp; Bagel on the corner of Willow. I had a club which was delicious. Jo&#39;s buffalo wings bagel was not nice :(</p>
+<p>We wandered down Willow and went into Macy&#39;s, TJ Max (horrible) and H&amp;M. I bought some boxers and Jo got a really nice coat. We headed over to Fenuil Hall and Quincy Market and spent ages wandering around the little shops and stalls. I bought a Boston Red Sox baseball as a souvenir, and we had a Starbucks in Quincy Market building. I love this area of Boston, the old buildings mingled with the new.</p>
+<p>We walked up to North End Park, then back to the hotel down State Street, past the Old State House then past the new one to the Common. We stopped at the <a href="http://charlesstreetmarket.com/">market on Charles Street</a> I remembered from a family holiday to Boston, which stocks everything!</p>
+<p>We stopped off at the hotel to relax before dinner, then wandered down Stuart looking for a restaurant. We chose an Italian called <a href="http://www.maggianos.com/en/Boston_Boston_MA/Pages/LocationLanding.aspx">Maggiano&#39;s Little Italy</a> and drank wine and ate so much pasta we couldn&#39;t finish - and we&#39;d ordered half portions! We walked around the block then watched TV/did puzzles until gone midnight.</p>
+
+		</div>
+		<div class="sidebar grid-30">
+			<h2>USA 2008</h2>
+			<ol>
+				<li><a href="/2008/10/10.html">10th Oct</a></li>
+				<li><a href="/2008/10/11.html">11th Oct</a></li>
+				<li><a href="/2008/10/12.html">12th Oct</a></li>
+				<li><a href="/2008/10/13.html">13th Oct</a></li>
+				<li><a href="/2008/10/14.html">14th Oct</a></li>
+				<li><a href="/2008/10/15.html">15th Oct</a></li>
+				<li><a href="/2008/10/16.html">16th Oct</a></li>
+				<li><a href="/2008/10/17.html">17th Oct</a></li>
+				<li><a href="/2008/10/18.html">18th Oct</a></li>
+				<li><a href="/2008/10/19.html">19th Oct</a></li>
+				<li><a href="/2008/10/20.html">20th Oct</a></li>
+				<li class=active><a href="/2008/10/21.html">21st Oct</a></li>
+				<li><a href="/2008/10/22.html">22nd Oct</a></li>
+				<li><a href="/2008/10/23.html">23rd Oct</a></li>
+				<li><a href="/2008/10/24.html">24th Oct</a></li>
+			</ol>
+			<div id="photos"></div>
+		</div>
+	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+	var jqxhr = $.ajax({
+			url: "http://ycpi.api.flickr.com/services/rest/?method=flickr.photos.search&user_id=90014740@N00&min_taken_date=2008-10-21 00:00:00&max_taken_date=2008-10-21 23:59:59&sort=date-taken-asc&format=json&nojsoncallback=1&api_key=6b44b7eaf862acb6abf898f5bc3882fb",
+			dataType: "json"
+		})
+	    .done(function(data) {
+	    	var photoType = "s"; // small square
+	    	// if (data.photos.photo.length <= 5) {
+	    	// 	photoType = "q"; // larger square
+	    	// }
+	    	var list = $("<ul></ul>");
+			$.each(data.photos.photo, function (i, photo) {
+				var img = $("<img/>")
+					.attr("src", "http://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + photoType + ".jpg")
+					.attr("alt", photo.title);
+				var link = $("<a/>")
+					.attr("href", "http://www.flickr.com/photos/crawlem/" + photo.id);
+				var fullLink = link.append(img);
+				var li = $("<li/>").append(fullLink);
+				$(list).append(li);
+			});
+			if (data.photos.photo.length > 0) {
+				$("#photos").append("<h2>Photos</h2>");
+				$("#photos").append(list);
+			}
+	    })
+	    .fail(function(o, s) {
+	    	alert(s);
+	    });
+	</script>
+		<footer class="grid-container">
+			<div class="grid-80">&copy; Copyright Mark Crawley 2007-2013</div>
+			<div class="social grid-20">F T E</div>
+		</footer>
+	</div>
+	<script>
+		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+		e.src='//www.google-analytics.com/analytics.js';
+		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+		ga('create','UA-6098332-2');ga('send','pageview');
+	</script>
+</body>
+</html>

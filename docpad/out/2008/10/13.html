@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+	<title>Mark Crawley | Journal | October 2008 | Exploring Vegas</title>
+	<link rel="stylesheet" href="/css/vendor/unsemantic-grid-responsive-no-ie7.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="post">
+	<div class="grid-parent">
+		<header class="grid-container">
+			<div class="grid-100">
+				<h1>Mark Crawley</h1>
+			</div>
+			<ul>
+				<li class="grid-10"><a href="/">Home</a></li>
+				<li class="grid-15"><a href="/journal/">Scribblings</a></li>
+				<li class="grid-10"><a href="/bunkercam/">Playground</a></li>
+			</ul>
+		</header>
+		<div class="grid-container">
+		<div class="content grid-70">
+			<h1>Exploring Vegas</h1>
+			<h2>Monday 13th October 2008</h2>
+			<p>I woke up early again (0630) and watched the sun rise from our bedroom window - beautiful. We decided to do the buffet for breakfast, then explore the Strip southwards. Brekkie was $30 all you can eat, and we did! Then we rolled out, headed down Bellagio Drive to the Miracle Mile shops in Planet Hollywood.</p>
+<p>Shops weren&#39;t too bad, and I saw a nice Fossil watch for $125... didn&#39;t buy it! There was a <a href="http://www.miraclemileshopslv.com/entertain.php?id=19">fake rainstorm</a> which was cool. And we picked up some souvenirs like Casino playing cards, fridge magnets and  ---.</p>
+<p>Then we went out through Planet Hollywood, walking down the strip, passing some shops. Jo wanted to go into M&amp;M World, and we saw a 3D movie and bought some M&amp;Ms for the plane tomorrow. Then the casino tour began:</p>
+<ul>
+<li>MGM Grand: nice casino, had a Starbucks and chatted to a couple from Bristol</li>
+<li>Excalibur: cool inside, nice fairy tale theme. Could be good for April.</li>
+<li>Luxor: not impressed, casino area not particularly themed. Connected to Excalibur via internal walkway.</li>
+<li>New York, New York: very cool!</li>
+</ul>
+<p>We were bushed after that, retired to our room then to the pool again. We booked a table at <a href="http://www.bellagio.com/restaurants/olives.aspx">Todd English&#39;s Olives</a> for 2030.</p>
+<p>Olives was good - a bit weird but nice. V expensive - bottle of wine was around $100. We had this nice sweet potato flatbread, covered in ham, spring onions, gorgonzola and balsamic vinegar. Waiter a bit brash, --- it because we had to, but great view of the fountains.</p>
+<p>We hit the casino on the 1c slots, each with $1. I doubled my money! Then played a few hands of blackjack to get some chips to bring back. I played $10 a hand and started with $50 - I came out with $80! Score!</p>
+<p>Packed and hit the hay around 2300, early start tomorrow to fly to NYC.</p>
+
+		</div>
+		<div class="sidebar grid-30">
+			<h2>USA 2008</h2>
+			<ol>
+				<li><a href="/2008/10/10.html">10th Oct</a></li>
+				<li><a href="/2008/10/11.html">11th Oct</a></li>
+				<li><a href="/2008/10/12.html">12th Oct</a></li>
+				<li class=active><a href="/2008/10/13.html">13th Oct</a></li>
+				<li><a href="/2008/10/14.html">14th Oct</a></li>
+				<li><a href="/2008/10/15.html">15th Oct</a></li>
+				<li><a href="/2008/10/16.html">16th Oct</a></li>
+				<li><a href="/2008/10/17.html">17th Oct</a></li>
+				<li><a href="/2008/10/18.html">18th Oct</a></li>
+				<li><a href="/2008/10/19.html">19th Oct</a></li>
+				<li><a href="/2008/10/20.html">20th Oct</a></li>
+				<li><a href="/2008/10/21.html">21st Oct</a></li>
+				<li><a href="/2008/10/22.html">22nd Oct</a></li>
+				<li><a href="/2008/10/23.html">23rd Oct</a></li>
+				<li><a href="/2008/10/24.html">24th Oct</a></li>
+			</ol>
+			<div id="photos"></div>
+		</div>
+	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+	var jqxhr = $.ajax({
+			url: "http://ycpi.api.flickr.com/services/rest/?method=flickr.photos.search&user_id=90014740@N00&min_taken_date=2008-10-13 00:00:00&max_taken_date=2008-10-13 23:59:59&sort=date-taken-asc&format=json&nojsoncallback=1&api_key=6b44b7eaf862acb6abf898f5bc3882fb",
+			dataType: "json"
+		})
+	    .done(function(data) {
+	    	var photoType = "s"; // small square
+	    	// if (data.photos.photo.length <= 5) {
+	    	// 	photoType = "q"; // larger square
+	    	// }
+	    	var list = $("<ul></ul>");
+			$.each(data.photos.photo, function (i, photo) {
+				var img = $("<img/>")
+					.attr("src", "http://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + photoType + ".jpg")
+					.attr("alt", photo.title);
+				var link = $("<a/>")
+					.attr("href", "http://www.flickr.com/photos/crawlem/" + photo.id);
+				var fullLink = link.append(img);
+				var li = $("<li/>").append(fullLink);
+				$(list).append(li);
+			});
+			if (data.photos.photo.length > 0) {
+				$("#photos").append("<h2>Photos</h2>");
+				$("#photos").append(list);
+			}
+	    })
+	    .fail(function(o, s) {
+	    	alert(s);
+	    });
+	</script>
+		<footer class="grid-container">
+			<div class="grid-80">&copy; Copyright Mark Crawley 2007-2013</div>
+			<div class="social grid-20">F T E</div>
+		</footer>
+	</div>
+	<script>
+		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+		e.src='//www.google-analytics.com/analytics.js';
+		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+		ga('create','UA-6098332-2');ga('send','pageview');
+	</script>
+</body>
+</html>

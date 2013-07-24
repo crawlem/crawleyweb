@@ -1,0 +1,38 @@
+body {
+	font-family: Arial, sans-serif;
+}
+
+.content h1 {
+	margin: 20px 0 5px 0;
+	padding: 0;
+	border: 0;
+}
+
+.post .content h2 {
+	color: #666;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 1em;
+}
+
+.sidebar, .social {
+	text-align: center;
+}
+
+.sidebar ol, .sidebar ul, header ul {
+	list-style: none;
+	padding: 0;
+	border: 0;
+	margin: 0;
+}
+
+.sidebar li {
+	padding: 0;
+	border: 0;
+	margin: 0;
+}
+
+#photos li {
+	float: left;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+	<title>Mark Crawley | Journal | October 2008 | Waking up in Vegas</title>
+	<link rel="stylesheet" href="/css/vendor/unsemantic-grid-responsive-no-ie7.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="post">
+	<div class="grid-parent">
+		<header class="grid-container">
+			<div class="grid-100">
+				<h1>Mark Crawley</h1>
+			</div>
+			<ul>
+				<li class="grid-10"><a href="/">Home</a></li>
+				<li class="grid-15"><a href="/journal/">Scribblings</a></li>
+				<li class="grid-10"><a href="/bunkercam/">Playground</a></li>
+			</ul>
+		</header>
+		<div class="grid-container">
+		<div class="content grid-70">
+			<h1>Waking up in Vegas</h1>
+			<h2>Sunday 12th October 2008</h2>
+			<p>We both woke up at 0500 and found it hard to go to sleep again... Managed eventually. I woke up first just before 8. We watched a bit of TV and decided we needed breakfast! We thought about the Bellagio buffet but Sat/Sun is a $30 brunch buffet, and we were too early to fill up for lunch too. Instead we got a croissant and muffin at the snack bar in Bellagio, then decided to explore towards the North entrance, heading for Caesar&#39;s Palace.</p>
+<p>We found some expensive but nice looking restaurants in Bellagio, especially <a href="http://www.bellagio.com/restaurants/olives.aspx">Todd English&#39;s Olives</a>. Then we headed out towards Caesar&#39;s. The lobby was very impressive, as was the casino. But best of all was the shops, they were &quot;set&quot; as if they were outside, with cobbled &quot;streets&quot;, lit as if it was late evening/dusk. Mainly designer, but the odd Gap/Apple/Sony store too. Lots of nice looking restaurants, perhaps slightly cheaper than Bellagio but not much!</p>
+<p>We then left Caesar&#39;s and crossed the street, walking down to Paris. The casino is nice, but not especially like Paris though! We wandered through to the shops which were cute, and found <a href="http://www.parislasvegas.com/restaurants/le-burger-brasserie.html">Le Burger Brasserie</a>, a sports bar, and decided to come back there later for lunch! We kept walking and found that Bally&#39;s is directly connected so we wandered through there too. It was nothing &quot;special&quot; compared to the others, it seemed quite dated. So we came out on the travelator and walked across the street to Bill&#39;s - again cute but we didn&#39;t like it. So on to the Flamingo.</p>
+<p>The Flamingo was more fun, lots of pink everywhere! Jo tried her luck at one of those picking arcade machines, but no luck. We sat in the gardens for a while, with real flamingos and other animals.</p>
+<p>Lunch in Paris was good! We ate in Le Burger Brasserie watching NFL. We walked home past Paris, and stood on Bellagio Drive to watch the fountains. Then we headed down to the pool for a bit to relax and read, but it was quite chilly despite the sun so we didn&#39;t stay long. When we got back to the room we were both exhausted and crashed. I was worse than Jo, she napped then watched a couple of movies while I slept. We finally gave in around 2130 and went to bed.</p>
+
+		</div>
+		<div class="sidebar grid-30">
+			<h2>USA 2008</h2>
+			<ol>
+				<li><a href="/2008/10/10.html">10th Oct</a></li>
+				<li><a href="/2008/10/11.html">11th Oct</a></li>
+				<li class=active><a href="/2008/10/12.html">12th Oct</a></li>
+				<li><a href="/2008/10/13.html">13th Oct</a></li>
+				<li><a href="/2008/10/14.html">14th Oct</a></li>
+				<li><a href="/2008/10/15.html">15th Oct</a></li>
+				<li><a href="/2008/10/16.html">16th Oct</a></li>
+				<li><a href="/2008/10/17.html">17th Oct</a></li>
+				<li><a href="/2008/10/18.html">18th Oct</a></li>
+				<li><a href="/2008/10/19.html">19th Oct</a></li>
+				<li><a href="/2008/10/20.html">20th Oct</a></li>
+				<li><a href="/2008/10/21.html">21st Oct</a></li>
+				<li><a href="/2008/10/22.html">22nd Oct</a></li>
+				<li><a href="/2008/10/23.html">23rd Oct</a></li>
+				<li><a href="/2008/10/24.html">24th Oct</a></li>
+			</ol>
+			<div id="photos"></div>
+		</div>
+	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+	var jqxhr = $.ajax({
+			url: "http://ycpi.api.flickr.com/services/rest/?method=flickr.photos.search&user_id=90014740@N00&min_taken_date=2008-10-12 00:00:00&max_taken_date=2008-10-12 23:59:59&sort=date-taken-asc&format=json&nojsoncallback=1&api_key=6b44b7eaf862acb6abf898f5bc3882fb",
+			dataType: "json"
+		})
+	    .done(function(data) {
+	    	var photoType = "s"; // small square
+	    	// if (data.photos.photo.length <= 5) {
+	    	// 	photoType = "q"; // larger square
+	    	// }
+	    	var list = $("<ul></ul>");
+			$.each(data.photos.photo, function (i, photo) {
+				var img = $("<img/>")
+					.attr("src", "http://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + photoType + ".jpg")
+					.attr("alt", photo.title);
+				var link = $("<a/>")
+					.attr("href", "http://www.flickr.com/photos/crawlem/" + photo.id);
+				var fullLink = link.append(img);
+				var li = $("<li/>").append(fullLink);
+				$(list).append(li);
+			});
+			if (data.photos.photo.length > 0) {
+				$("#photos").append("<h2>Photos</h2>");
+				$("#photos").append(list);
+			}
+	    })
+	    .fail(function(o, s) {
+	    	alert(s);
+	    });
+	</script>
+		<footer class="grid-container">
+			<div class="grid-80">&copy; Copyright Mark Crawley 2007-2013</div>
+			<div class="social grid-20">F T E</div>
+		</footer>
+	</div>
+	<script>
+		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+		e.src='//www.google-analytics.com/analytics.js';
+		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+		ga('create','UA-6098332-2');ga('send','pageview');
+	</script>
+</body>
+</html>
