@@ -3,7 +3,7 @@ body {
 }
 
 .content h1 {
-	margin: 20px 0 5px 0;
+	margin: 10px 0 10px 0;
 	padding: 0;
 	border: 0;
 }
@@ -20,19 +20,72 @@ body {
 	text-align: center;
 }
 
-.sidebar ol, .sidebar ul, header ul {
+.sidebar ol, .sidebar ul, header ul, .social ul {
 	list-style: none;
 	padding: 0;
 	border: 0;
 	margin: 0;
 }
 
-.sidebar li {
+.sidebar li, .social li {
 	padding: 0;
 	border: 0;
 	margin: 0;
 }
 
+#photos {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#photos h2 {
+	display: none;
+}
+
 #photos li {
-	float: left;
+	display: inline;
+}
+
+#photos img {
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+.social li {
+	float: right;
+}
+
+.social a {
+	margin-left: 10px;
+}
+
+header {
+	border-bottom: 3px solid #eee;
+	padding: 10px;
+}
+
+header h1 {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	letter-spacing: .2em;
+	color: #666;
+}
+
+.mainMenu {
+	margin-top: 10px;
+}
+
+footer {
+	margin-top: 20px;
+	border-top: 3px solid #eee;
+	padding: 10px;
+	color: #666;
+	font-size: .9em;
+	position: relative;
+}
+
+.copyright {
+	margin-top: .8em;
 }

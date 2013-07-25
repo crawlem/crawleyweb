@@ -14,10 +14,7 @@ layout: default
 			</ol>
 			<div id="photos">
 				<h2>Photos</h2>
-				<ul>
-					<% for photo in @feedr.feeds.flickrusa2008.photos.photo: %><% continue if new Date(photo.datetaken).getDate() < @formatDate(@document.date, "DD") %><% continue if new Date(photo.datetaken).getDate() > @formatDate(@document.date, "DD") %><li datetime="<%= photo.datetaken %>"><a href="http://www.flickr.com/photos/crawlem/<%=photo.id%>/"><img src="http://farm<%= photo.farm %>.staticflickr.com/<%= photo.server %>/<%= photo.id %>_<%= photo.secret %>_s.jpg" alt="<%=photo.title%>"></a></li>
-					<% end %>
-				</ul>
+				<ul><% for photo in @feedr.feeds.flickrusa2008.photos.photo: %><% continue if new Date(photo.datetaken).getDate() < @formatDate(@document.date, "DD") %><% continue if new Date(photo.datetaken).getDate() > @formatDate(@document.date, "DD") %><li datetime="<%= photo.datetaken %>"><a href="http://www.flickr.com/photos/crawlem/<%=photo.id%>/"><img src="http://farm<%= photo.farm %>.staticflickr.com/<%= photo.server %>/<%= photo.id %>_<%= photo.secret %>_s.jpg" alt="<%=photo.title%>"></a></li><% end %></ul>
 			</div>
 		</div>
 	</div>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
-	<title>Mark Crawley | Journal | <%=@formatDate(@document.date, "MMMM YYYY")%> | <%= @document.title %></title>
+	<title><%=@site.title%> | Journal | <%=@formatDate(@document.date, "MMMM YYYY")%> | <%= @document.title %></title>
 	<link rel="stylesheet" href="/css/unsemantic-grid-responsive-no-ie7.css">
 	<link rel="stylesheet" href="/css/main.css">
 </head>
@@ -11,7 +11,7 @@
 	<div class="grid-parent">
 		<header class="grid-container">
 			<div class="grid-100">
-				<h1>Mark Crawley</h1>
+				<h1><%=@site.title%></h1>
 			</div>
 			<ul class="mainMenu">
 				<li class="grid-10"><a href="/">Home</a></li>
@@ -21,8 +21,14 @@
 		</header>
 		<%- @content %>
 		<footer class="grid-container">
-			<div class="grid-80">&copy; Copyright Mark Crawley 2007-<%=@formatDate(@ddate, "YYYY")%></div>
-			<div class="social grid-20">F T E</div>
+			<div class="copyright grid-80">&copy; Copyright <%=@site.author%> 2007-<%=@formatDate(@ddate, "YYYY")%></div>
+			<div class="social grid-20">
+				<ul>
+					<li><a href="http://www.facebook.com/crawlem/"><img src="/images/fb.png" width="40" height="40" alt="Facebook"></a></li>
+					<li><a href="http://www.twitter.com/crawlem/"><img src="/images/twitter.png" width="40" height="40" alt="Twitter"></a></li>
+					<li><a href="mailto:mark@crawleyweb.co.uk"><img src="/images/mail.png" width="40" height="40" alt="Email"></a></li>
+				</ul>
+			</div>
 		</footer>
 	</div>
 	<!-- //-beg- concat_js -->

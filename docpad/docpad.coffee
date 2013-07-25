@@ -10,7 +10,8 @@ docpadConfig =
     templateData:
         site:
             url: "http://crawleyweb.co.uk/"
-            title: "Mark Crawley"
+            title: "crawleyweb"
+            author: "Mark Crawley"
 
         formatDate: (date,format='LLLL') -> return moment(date).format(format)
             
