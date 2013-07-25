@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
 	<title>Mark Crawley | Journal | <%=@formatDate(@document.date, "MMMM YYYY")%> | <%= @document.title %></title>
-	<link rel="stylesheet" href="/css/vendor/unsemantic-grid-responsive-no-ie7.css">
+	<link rel="stylesheet" href="/css/unsemantic-grid-responsive-no-ie7.css">
 	<link rel="stylesheet" href="/css/main.css">
 </head>
 <body class="<%= @document.layout %>">
@@ -13,7 +13,7 @@
 			<div class="grid-100">
 				<h1>Mark Crawley</h1>
 			</div>
-			<ul>
+			<ul class="mainMenu">
 				<li class="grid-10"><a href="/">Home</a></li>
 				<li class="grid-15"><a href="/journal/">Scribblings</a></li>
 				<li class="grid-10"><a href="/bunkercam/">Playground</a></li>
@@ -25,6 +25,9 @@
 			<div class="social grid-20">F T E</div>
 		</footer>
 	</div>
+	<!-- //-beg- concat_js -->
+	<script src="/js/main.js"></script>
+	<!-- //-end- concat_js -->
 	<script>
 		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
 		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
