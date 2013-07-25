@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
 	<title>Mark Crawley | Journal | <%=@formatDate(@document.date, "MMMM YYYY")%> | <%= @document.title %></title>
 	<link rel="stylesheet" href="/css/vendor/unsemantic-grid-responsive-no-ie7.css">
-	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/main.css">
 </head>
 <body class="<%= @document.layout %>">
 	<div class="grid-parent">
