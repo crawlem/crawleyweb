@@ -15,8 +15,8 @@
 			</div>
 			<ul class="mainMenu">
 				<li class="grid-10"><a href="/">Home</a></li>
-				<li class="grid-15"><a href="/journal/">Scribblings</a></li>
-				<li class="grid-10"><a href="/bunkercam/">Playground</a></li>
+				<li class="grid-10"><a href="/journal/">Scribblings</a></li>
+				<li class="grid-10"><a href="/bunkercam/">Bunkercam</a></li>
 			</ul>
 		</header>
 		<%- @content %>
