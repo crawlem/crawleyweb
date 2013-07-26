@@ -33,6 +33,10 @@ header {
 		color: $contrastHex;
 		font-weight: bolder;
 	}
+
+	ul {
+		@include list-reset;
+	}
 }
 
 .mainMenu {
@@ -58,33 +62,60 @@ header {
 	font-size: 1em;
 }
 
-.sidebar, .social {
+.tags {
+	font-size: .8em;
+	color: $contrastHex;
+}
+
+.social {
 	text-align: center;
+
+	ul {
+		@include list-reset;
+	}
+
+	li {
+		@include box-reset;
+	}
 }
 
-.sidebar ol, .sidebar ul, header ul, .social ul {
-	@include list-reset;
-}
+.sidebar {
+	ol {
+		@include list-reset;
+	}
 
-.sidebar li, .social li {
-	@include box-reset;
+	li {
+		@include box-reset;
+	}
 }
 
 #photos {
-	margin-left: auto;
-	margin-right: auto;
-	
+	margin-top: $gutterPx*2;
+	overflow: hidden;
+
 	h2 {
 		display: none;
 	}
 
-	li {
-		display: inline;
+	ul {
+		@include list-reset;
 	}
 
-	img {
+	li {
 		@include box-reset;
+		float: left;
+		height: 75px;
+		width: 75px;
 	}
+}
+
+.postNav {
+	clear: both;
+	margin-top: $gutterPx*2;
+}
+
+.postNext {
+	text-align: right;
 }
 
 .social {
@@ -104,6 +135,7 @@ footer {
 	color: $contrastHex;
 	font-size: .9em;
 	position: relative;
+	clear: both;
 
 	.copyright {
 		margin-top: .8em;

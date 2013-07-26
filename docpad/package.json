@@ -11,7 +11,9 @@
     "docpad-plugin-marked": "~2.1.1",
     "docpad-plugin-eco": "~2.0.2",
     "moment": "~2.1.0",
-    "docpad-plugin-feedr": "~2.5.0"
+    "docpad-plugin-feedr": "~2.5.0",
+    "docpad-plugin-sass": "~2.6.0",
+    "docpad-plugin-related": "~2.0.5"
   },
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {
