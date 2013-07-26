@@ -1,0 +1,111 @@
+/* Variables */
+$contrastHex: #666;
+$fadedHex: #eee;
+$gutterPx: 10px;
+$borderPx: 3px;
+
+
+/* Mixins */
+@mixin box-reset {
+	padding: 0;
+	border: 0;
+	margin: 0;
+}
+
+@mixin list-reset {
+	list-style: none;
+	@include box-reset;
+}
+
+
+/* Styles */
+body {
+	font-family: Arial, sans-serif;
+}
+
+header {
+	border-bottom: $borderPx solid #eee;
+	padding: $gutterPx;
+	
+	h1 {
+		@include box-reset;
+		letter-spacing: .2em;
+		color: $contrastHex;
+		font-weight: bolder;
+	}
+}
+
+.mainMenu {
+	margin-top: $gutterPx;
+	
+	li {
+		border: 1px solid $fadedHex;
+		margin: 0 $gutterPx;
+		padding: $gutterPx/2 $gutterPx;
+		text-align: center;
+	}
+}
+
+.content h1 {
+	margin: $gutterPx 0 $gutterPx 0;
+	padding: 0;
+	border: 0;
+}
+
+.post .content h2 {
+	color: $contrastHex;
+	@include box-reset;
+	font-size: 1em;
+}
+
+.sidebar, .social {
+	text-align: center;
+}
+
+.sidebar ol, .sidebar ul, header ul, .social ul {
+	@include list-reset;
+}
+
+.sidebar li, .social li {
+	@include box-reset;
+}
+
+#photos {
+	margin-left: auto;
+	margin-right: auto;
+	
+	h2 {
+		display: none;
+	}
+
+	li {
+		display: inline;
+	}
+
+	img {
+		@include box-reset;
+	}
+}
+
+.social {
+	li {
+		float: right;
+	}
+
+	a {
+		margin-left: $gutterPx;
+	}
+}
+
+footer {
+	margin-top: $gutterPx*2;
+	border-top: $borderPx solid $fadedHex;
+	padding: $gutterPx;
+	color: $contrastHex;
+	font-size: .9em;
+	position: relative;
+
+	.copyright {
+		margin-top: .8em;
+	}
+}
