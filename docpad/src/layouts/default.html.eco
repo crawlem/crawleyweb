@@ -40,7 +40,7 @@
 	<!-- //-end- concat_js -->
 
 	<script>
-		loadPhotos("<%=@formatDate(@document.date, "YYYY-MM-DD")%>");
+		<%= if @document.flickrSet then "loadPhotoSet('" + @document.flickrSet + "');" else "loadPhotoDay('" + @formatDate(@document.date, "YYYY-MM-DD") + "');" %>
 	</script>
 
 	<script>
