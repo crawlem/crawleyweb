@@ -1,3 +1,7 @@
+$("#bunkercam").load(function() {
+	setTimeout("location.reload(true)", 30000);
+});
+
 function handleFlickrPhotos(data) {
 	var photoType = "s"; // small square
 	var list = $("<ul></ul>");
@@ -30,7 +34,7 @@ function handleFlickrError(o, s) {
 }
 
 function loadPhotoDay(date) {
-	if ($("#photos")) {
+	if ($("#photos").length) {
 		var jqxhr = $.ajax({
 			url: "http://ycpi.api.flickr.com/services/rest/?method=flickr.photos.search&user_id=90014740@N00&min_taken_date=" + date + " 00:00:00&max_taken_date=" + date + " 23:59:59&sort=date-taken-asc&format=json&nojsoncallback=1&api_key=6b44b7eaf862acb6abf898f5bc3882fb",
 			dataType: "json"
@@ -41,7 +45,7 @@ function loadPhotoDay(date) {
 }
 
 function loadPhotoSet(setId) {
-	if ($("#photos")) {
+	if ($("#photos").length) {
 		var jqxhr = $.ajax({
 			url: "http://ycpi.api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&photoset_id=" + setId + "&format=json&nojsoncallback=1&api_key=6b44b7eaf862acb6abf898f5bc3882fb",
 			dataType: "json"

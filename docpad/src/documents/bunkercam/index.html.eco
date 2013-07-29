@@ -1,0 +1,18 @@
+---
+id: bunkercam
+title: Bunkercam
+layout: default
+---
+<div class="grid-container">
+	<div class="content grid-100">
+		<h1><%= @document.title %></h1>
+		<p>Scenes from my bunker at Wimbledon. Images update every few minutes, page will automatically refresh.</p>
+		<div class="photos">
+			<ul>
+				<% for img in ["desk.jpg", "room.jpg", "wc1.jpg", "wc2.jpg", "timelapse_WC1.jpg", "timelapse_WC2.jpg", "timelapse_WC3.jpg"]: %>
+					<li><img src="<%=img%>" width="320" height="240" alt=""></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>

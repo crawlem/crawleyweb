@@ -1,0 +1,11 @@
+<footer class="grid-container">
+	<div class="copyright grid-60">&copy; Copyright <%= @author %> 2007-<%= @date %></div>
+	<div class="social grid-40">
+		<ul>
+			<li><a href="http://www.facebook.com/crawlem/"><img src="/images/fb.png" width="40" height="40" alt="Facebook"></a></li>
+			<li><a href="http://www.twitter.com/crawlem/"><img src="/images/twitter.png" width="40" height="40" alt="Twitter"></a></li>
+			<li><a href="http://pinterest.com/crawlem/"><img src="/images/pin.png" width="40" height="40" alt="Twitter"></a></li>
+			<li><a href="mailto:mark@crawleyweb.co.uk"><img src="/images/mail.png" width="40" height="40" alt="Email"></a></li>
+		</ul>
+	</div>
+</footer>
