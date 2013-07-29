@@ -1,6 +1,9 @@
 /* Variables */
 $contrastHex: #666;
 $fadedHex: #eee;
+$linkHex: #6e89ce;
+$linkVisitedHex: #654;
+$linkActiveHex: #ffc37a;
 $gutterPx: 10px;
 $borderPx: 3px;
 
@@ -21,6 +24,18 @@ $borderPx: 3px;
 /* Styles */
 body {
 	font-family: Arial, sans-serif;
+}
+
+a {
+	color: $linkHex;
+
+	&:visited {
+		color: $linkVisitedHex;
+	}
+
+	&:active {
+		color: $linkActiveHex;
+	}
 }
 
 header {
@@ -112,10 +127,16 @@ header {
 .postNav {
 	clear: both;
 	margin-top: $gutterPx*2;
-}
+	font-size: .9em;
+	padding: 0 !important;
 
-.postNext {
-	text-align: right;
+	div {
+		padding: 0 !important;
+	}
+
+	.next {
+		text-align: right;
+	}
 }
 
 .social {
