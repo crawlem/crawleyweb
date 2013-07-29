@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<div class="grid-container">
+	<div class="content grid-100">
+		<h1><%= @document.title %></h1>
+		<%- @content %>
+	</div>
+	<div class="content grid-100">
+		<h2>Recent Activity</h2>
+		
+	</div>
+</div>
