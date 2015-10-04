@@ -1,0 +1,19 @@
+---
+title: Sitemap
+layout: default
+ignored: false
+
+isFooterMenu: true
+pageOrder: 9
+---
+<p>Each page available on this website is listed below.</p>
+
+<ul>
+    <% for page in @getCollection("pages").findAll().toJSON(): %>
+        <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
+            <a href="<%= @getUrl(page.url) %>">
+                <%= page.title %>
+            </a>
+        </li>
+    <% end %>
+</ul>

@@ -4,9 +4,9 @@
 # Requires
 moment = require('moment')
 moment.lang('en')  # set locale
- 
+
 # Define Configuration
-docpadConfig =
+docpadConfig = {
     templateData:
         site:
             url: "http://crawleyweb.co.uk/"
@@ -14,7 +14,7 @@ docpadConfig =
             author: "Mark Crawley"
 
         formatDate: (date,format='LLLL') -> return moment(date).format(format)
-            
+
     plugins:
         related:
             collectionName: "posts"
@@ -29,7 +29,13 @@ docpadConfig =
             @getCollection("html").findAllLive({layout:"post"},[{date:-1}])
     	playground: ->
     		@getCollection("html").findAllLive({layout:"playground"},[{date:1}])
-
+        pages: ->
+            @getCollection("html").findAll({ignored: false, isPage: true}, [{pageOrder: 1}])
+        mainMenu: ->
+            @getCollection("html").findAll({ignored: false, isMainMenu: true}, [{pageOrder: 1}])
+        footerMenu: ->
+            @getCollection("html").findAll({ignored: false, isFooterMenu: true}, [{pageOrder: 1}])
+}
 
 # Export the DocPad Configuration
 module.exports = docpadConfig
