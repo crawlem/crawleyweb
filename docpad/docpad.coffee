@@ -15,6 +15,9 @@ docpadConfig = {
 
         formatDate: (date,format='LLLL') -> return moment(date).format(format)
 
+        getUrl: (url) ->
+            return url.replace /^\//g, ""
+
     plugins:
         related:
             collectionName: "posts"
@@ -30,11 +33,11 @@ docpadConfig = {
     	playground: ->
     		@getCollection("html").findAllLive({layout:"playground"},[{date:1}])
         pages: ->
-            @getCollection("html").findAll({ignored: false, isPage: true}, [{pageOrder: 1}])
+            @getCollection("html").findAllLive({ignored: false, isPage: true}, [{pageOrder: 1}])
         mainMenu: ->
-            @getCollection("html").findAll({ignored: false, isMainMenu: true}, [{pageOrder: 1}])
+            @getCollection("html").findAllLive({ignored: false, isMainMenu: true}, [{pageOrder: 1}])
         footerMenu: ->
-            @getCollection("html").findAll({ignored: false, isFooterMenu: true}, [{pageOrder: 1}])
+            @getCollection("html").findAllLive({ignored: false, isFooterMenu: true}, [{pageOrder: 1}])
 }
 
 # Export the DocPad Configuration

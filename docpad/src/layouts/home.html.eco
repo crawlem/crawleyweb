@@ -1,13 +1,25 @@
 ---
 layout: default
 ---
-<div class="grid-container">
-	<div class="content grid-100">
-		<h1><%= @document.title %></h1>
-		<%- @content %>
-	</div>
-	<div class="content grid-100">
-		<h2>Recent Activity</h2>
-		
-	</div>
-</div>
+<h2><%= @document.title %></h2>
+<%- @content %>
+
+<!-- <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+<script type="IN/MemberProfile" data-id="https://www.linkedin.com/in/crawlem" data-format="inline" data-related="false"></script> -->
+
+<section class="projects">
+	<article>
+		<h1>Balloons Inc. Responsive Website</h1>
+		<p>I developed a website for my brother in-law Rich, who runs a balloon twisting business in Exeter. I used <a href="https://en.wikipedia.org/wiki/Responsive_web_design">responsive web design</a> techniques so the site adapts to different screen and device types.</p>
+		<p>The photo galleries on the site are managed by Rich in Flickr and automatically appear on the website. Rich can show off his latest party or event without me updating the site.</p>
+		<p>Check it out at <a href="http://balloonsinc.co.uk/">balloonsinc.co.uk</a>.</p>
+		<div class="thumbnails">
+			<img src="img/uploads/2015/balloonsinc-medium.jpg" width="300" height="416">
+		</div>
+	</article>
+
+	<article>
+		<h1>Hackintosh PC build</h1>
+		<p>I enjoy building custom PCs, and have built several of my own and for other people over the years. This one was different though, as it needed to run Apple MacOS X.</p>
+	</article>
+</section>
