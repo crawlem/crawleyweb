@@ -1,0 +1,11 @@
+out
+
+.DS_Store
+
+pids
+logs
+results
+
+node_modules
+
+htdocs
