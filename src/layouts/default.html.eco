@@ -19,18 +19,17 @@ outFilename: layout-default.html
 	<link rel="stylesheet" href="/css/main.css">
 </head>
 <body id="<%= @document.id %>"<%- if @document.layout != "default" then ' class="' + @document.layout + '"' %>>
-	<div class="container">
-		<header>
-			<h1><a href="index.html"><%= @site.title %></a></h1>
-			<nav>
-				<h2>Main Menu</h2>
-				<ul>
-					<li><a href="https://twitter.com/crawlem">Twitter</a></li>
-					<li><a href="https://uk.linkedin.com/in/crawlem">LinkedIn</a></li>
-				</ul>
-			</nav>
-		</header>
-	</div>
+	<nav>
+		<h2>Main Menu</h2>
+		<ul>
+			<li><a href="https://twitter.com/crawlem">Twitter</a></li>
+			<li><a href="https://uk.linkedin.com/in/crawlem">LinkedIn</a></li>
+		</ul>
+	</nav>
+
+	<header>
+		<h1><a href="index.html"><%= @site.title %></a></h1>
+	</header>
 
 	<main>
 		<%- @content %>

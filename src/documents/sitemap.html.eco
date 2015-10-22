@@ -10,7 +10,7 @@ pageOrder: 9
 <p>Each page available on this website is listed below.</p>
 
 <ul>
-    <% for page in @getCollection("pages").toJSON(): %>
+    <% for page in @getCollection("html").findAllLive({ignored: false, isPage: true}, [{pageOrder: 1}]).toJSON(): %>
         <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
             <a href="<%= @getUrl(page.url) %>">
                 <%= page.title %>

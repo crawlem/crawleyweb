@@ -1,13 +1,14 @@
 // VARIABLES
 // =================================================
+// Colours
 $bgColour: rgba(141, 141, 146, 1);
-$bgColourOpaque: rgba(141, 141, 146, .2);
 $headingColour: #4a4063;
 $textColour: #0e1116;
 $callToActionColour: #c95746;
 
-$gutterPx: 10px;
-$headerHeight: 75px;
+// Grid
+$gutterPx: 20px;
+$borderPx: 2px;
 
 
 // MIXINS
@@ -46,89 +47,102 @@ a {
 	}
 }
 
-header {
-	background-color: rgba(255,255,255,0.4);
-	border-bottom: 1px solid $headingColour;
+nav {
+	border-bottom: $borderPx solid $headingColour;
 	position: fixed;
 	top: 0;
 	z-index: 999;
 	width: 100%;
-	
-	h1 {
-		@include boxReset;
-		position: absolute;
-		top: $gutterPx;
-		left: $gutterPx;
+	background-color: rgba(244, 244, 244, 0.9);
+	display: block;
+	font-size: .9em;
 
-		a {
-			display: inline-block;
-			@include hideText;
-			width: 251px;
-			height: $headerHeight;
-			background: url('/img/logo.png') no-repeat;
-		}
+	h2 {
+		display: none;
 	}
 
-	nav {
-		float: right;
-		height: 100px;
+	ul {
+		@include boxReset;
+		list-style: none;
+		padding: $gutterPx/2;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-justify-content: flex-end;
+		-ms-flex-pack: end;
+		justify-content: flex-end;
 
-		h2 {
-			display: none;
-		}
+		li {
+			display: inline-block;
+			margin-right: 4vw;
 
-		ul {
-			list-style: none;
-			padding: $gutterPx;
-			display: -webkit-flex;
-			display: -ms-flexbox;
-			display: flex;
-			-webkit-justify-content: flex-end;
-			-ms-flex-pack: end;
-			justify-content: flex-end;
-
-			li {
+			a {
+				display: table-cell;
+				vertical-align: middle;
 				display: inline-block;
-				margin-right: 4vw;
+			}
 
-				a {
-					display: table-cell;
-					vertical-align: middle;
-					display: inline-block;
-					height: 50px;
-				}
+			// &:nth-last-child(-n+2) a {
+			// 	@include hideText;
+			// 	width: 50px;
+			// 	background-image: url('/img/twitter.png');
+			// }
 
-				&:nth-last-child(-n+2) a {
-					@include hideText;
-					width: 50px;
-					background-image: url('/img/twitter.png');
-				}
+			&:last-child {
+				margin-right: 0;
 
-				&:last-child {
-					margin-right: 0;
-
-					a {
-						@include hideText;
-						width: 50px;
-						background-image: url('/img/linkedin.png');
-					}
-				}
+			// 	a {
+			// 		@include hideText;
+			// 		width: 50px;
+			// 		background-image: url('/img/linkedin.png');
+			// 	}
 			}
 		}
 	}
 }
 
-main {
-	margin-top: $headerHeight+$gutterPx*2;
-	padding: $gutterPx;
+header {
+	background: url('../img/photo.jpg') center no-repeat;
+	background-size: cover;
+	height: 420px;
+	text-align: center;
+	padding-top: 4em;
+	position: relative;
 
-	h1, h2, h3 {
-		color: $headingColour;
-		font-weight: 300;
+	&::before {
+		content: ' ';
+		display: block;
+		position: absolute;
+		top: 0;
+	    width: 100%;
+	    height: 100%;
+		background: url('../img/photo.jpg') center no-repeat;
+		background-size: cover;
+		// -webkit-filter: blur(5px);
+		// filter: blur(5px);
+		-webkit-clip-path: circle(380px 380px $borderPx);
+		clip-path: circle(380px 380px $borderPx);
 	}
 
-	h1 {
-		font-size: 1.1em;
+	> h1 a {
+		@include hideText;
+		@include boxReset;
+		background: rgba(244, 244, 244, .6) url('../img/logo.png') center no-repeat;
+		display: inline-block;
+		width: 380px;
+		height: 380px;
+		border: $borderPx solid $headingColour;
+		border-radius: 50%;
+		position: relative;
+	}
+}
+
+main {
+	padding: $gutterPx;
+
+	article > h1, h2, h3 {
+		color: $headingColour;
+		font-weight: 300;
 	}
 }
 
@@ -172,9 +186,9 @@ footer {
 			-webkit-flex: 1 1 300px+$gutterPx*2;
 			-ms-flex: 1 1 300px+$gutterPx*2;
 			flex: 1 1 300px+$gutterPx*2;
-			border: 1px solid $bgColour;
+			border: $borderPx solid $headingColour;
 			padding: $gutterPx;
-			margin-right: $gutterPx;
+			margin: $gutterPx $gutterPx 0 0;
 
 			&:last-child {
 				margin-right: 0;
@@ -190,8 +204,8 @@ footer {
 // SITE CSS - RETINA
 // =================================================
 @media all and (-webkit-min-device-pixel-ratio: 2) {
-	header h1 a {
+	header > h1 {
 		background-image: url('../img/logo@2x.png');
-		background-size: 251px 75px;
+		background-size: 300px 247px;
 	}
 }

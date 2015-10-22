@@ -19,10 +19,13 @@
    style="enable-background:new 0 0 32 32;"
    xml:space="preserve"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="CrawleyWeb Branding v2.svg"><metadata
+   sodipodi:docname="CrawleyWeb Branding v2.svg"
+   inkscape:export-filename="/Users/crawleym/Documents/Sites/crawleyweb.co.uk/assets/Branding/v2/crawleyweb-logo-square.png"
+   inkscape:export-xdpi="571.96002"
+   inkscape:export-ydpi="571.96002"><metadata
      id="metadata3947"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
      id="defs3945" /><sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -39,8 +42,8 @@
      showguides="false"
      inkscape:guide-bbox="true"
      inkscape:zoom="1"
-     inkscape:cx="-10.474807"
-     inkscape:cy="18.145855"
+     inkscape:cx="-171.97481"
+     inkscape:cy="-101.85415"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -49,7 +52,7 @@
        orientation="0,1"
        id="guide4010" /></sodipodi:namedview><g
      id="g3906"
-     transform="matrix(4.0833333,0,0,4.0833333,21,44.20904)"
+     transform="matrix(4.0833333,0,0,4.0833333,-151,116.20904)"
      style="fill:#8d8d92;fill-opacity:1"
      inkscape:export-xdpi="329.85001"
      inkscape:export-ydpi="329.85001"><g
@@ -78,16 +81,16 @@
      id="g3941" /><text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     x="36.728813"
-     y="123"
+     x="-135.27118"
+     y="195"
      id="text4002"
      sodipodi:linespacing="125%"
      inkscape:export-xdpi="329.85001"
      inkscape:export-ydpi="329.85001"><tspan
        sodipodi:role="line"
        id="tspan4004"
-       x="36.728813"
-       y="123"
+       x="-135.27118"
+       y="195"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:70px;line-height:125%;font-family:'PT Sans Narrow';-inkscape-font-specification:'PT Sans Narrow, Condensed';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#c05746;fill-opacity:1">web</tspan></text>
 <text
      xml:space="preserve"
