@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	
+	<!-- iOS meta tags -->
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
+
+	<title>HTML5 Canvas Signature Demo</title>
+	
+	<style type="text/css">
+		body {margin:0;padding:0;border:0}
+		#wrapper {position:relative}
+		#signature {border:1px solid #000;background-color:#eee}
+		#dataString {display:none}
+		#canvasImg {display:none}
+	</style>
+	
+	<script type="text/javascript">
+		// Function to determine the absolute X position of a given element
+		function findPosX(obj) {
+			var curleft = 0;
+			if(obj.offsetParent)
+				while(1) {
+					curleft += obj.offsetLeft;
+					if(!obj.offsetParent)
+					break;
+					obj = obj.offsetParent;
+				}
+			else if(obj.x)
+				curleft += obj.x;
+			return curleft;
+		}
+		
+		// Function to determine the absolute Y position of a given element
+		function findPosY(obj) {
+			var curtop = 0;
+			if(obj.offsetParent)
+				while(1) {
+					curtop += obj.offsetTop;
+					if(!obj.offsetParent)
+					break;
+					obj = obj.offsetParent;
+				}
+			else if(obj.y)
+				curtop += obj.y;
+			return curtop;
+		}
+
+		// Register window.onLoad function
+		if (window.addEventListener) {
+			window.addEventListener("load", function () {
+				var canvas, context, tool, canvasX, canvasY, string, img;
+				
+				// Initialization sequence
+				function init () {
+					// Find the canvas element.
+					canvas = document.getElementById("signature");
+					if (!canvas) {
+						alert("No canvas element found");
+						return;
+					}
+					
+					if (!canvas.getContext) {
+						alert("No canvas.getContext feature");
+						return;
+					}
+					
+					// Get the 2D canvas context
+					context = canvas.getContext("2d");
+					if (!context) {
+						alert("Failed to get 2d context");
+						return;
+					}
+					
+					string = document.getElementById("dataString");
+					if (!string) {
+						alert("No input element found");
+						return;
+					}
+					
+					img = document.getElementById("canvasImg");
+					if (!img) {
+						alert("No img element found");
+						return;
+					}
+					
+					// [MC] Find absolute x/y of the canvas element so we can use to work out the touch movement coordinates
+					canvasX = findPosX(canvas);
+					canvasY = findPosY(canvas);
+					
+					// Pencil tool instance
+					tool = new tool_pencil();
+					
+					// Attach the mouse event handlers
+					canvas.addEventListener("mousemove", ev_canvas, false);
+					canvas.addEventListener("mouseup", ev_canvas, false);
+					canvas.addEventListener("mousedown", ev_canvas, false);
+					
+					// Attach the touch event handlers
+					canvas.addEventListener("touchmove", ev_canvas, false);
+					canvas.addEventListener("touchstart", ev_canvas, false);
+					canvas.addEventListener("touchend", ev_canvas, false);
+				}
+				
+				function tool_pencil() {
+					var tool = this;
+					this.started = false;
+					
+					// [MC] Generic function for mouseup and touchend
+					this.dragend = function(ev) {
+						if (tool.started) {
+							if (ev.type == "mouseup")
+								tool.mousemove(ev);
+							else {
+								tool.touchmove(ev);
+							}
+							tool.started = false;
+							
+							var canvasDataURL = canvas.toDataURL();
+							string.value = canvasDataURL;
+							string.style.display = "block";
+							img.src = canvasDataURL;
+							img.style.display = "block";
+						}
+					};
+					
+					// This is called when you start holding down the mouse button.
+					// This starts the pencil drawing.
+					this.mousedown = function(ev) {
+						context.beginPath();
+						context.moveTo(ev._x, ev._y);
+						tool.started = true;
+					};
+					
+					// This function is called every time you move the mouse. Obviously, it only 
+					// draws if the tool.started state is set to true (when you are holding down 
+					// the mouse button).
+					this.mousemove = function(ev) {
+						if (tool.started) {
+							context.lineTo(ev._x, ev._y);
+							context.stroke();
+						}
+					};
+					
+					// This is called when you release the mouse button.
+					this.mouseup = function(ev) {
+						tool.dragend(ev);
+					};
+					
+					// [MC] Based on mousemove but events don't have layerX/Y in iOS so we have to work out
+					// the positioning absolutely
+					this.touchmove = function(ev) {
+						ev.preventDefault();
+						if (tool.started) {
+							if(ev.touches.length == 1) { // Only deal with one finger
+								var touch = ev.touches[0];
+								context.lineTo(touch.screenX - canvasX, touch.screenY - canvasY);
+								context.stroke();
+							}
+						}
+					};
+					
+					// [MC] Based on mousedown but events don't have layerX/Y in iOS so we have to work out
+					// the positioning absolutely
+					this.touchstart = function(ev) {
+						ev.preventDefault();
+						context.beginPath();
+						if(ev.touches.length == 1) { // Only deal with one finger
+							var touch = ev.touches[0];
+							context.moveTo(touch.screenX - canvasX, touch.screenY - canvasY);
+						}
+						tool.started = true;
+					};
+					
+					// [MC] Based on mouseup
+					this.touchend = function(ev) {
+						ev.preventDefault();
+						tool.dragend(ev);
+					};
+				}
+					
+				// The general-purpose event handler. This function just determines the mouse 
+				// position relative to the canvas element.
+				function ev_canvas(ev) {
+					if (ev.offsetX || ev.offsetX == 0) { // Opera
+						ev._x = ev.offsetX;
+						ev._y = ev.offsetY;
+					} else if (ev.layerX || ev.layerX == 0) { // Firefox
+						ev._x = ev.layerX;
+						ev._y = ev.layerY;
+					}
+				
+					// Call the event handler of the tool.
+					var func = tool[ev.type];
+					if (func) {
+						func(ev);
+					}
+				}
+					
+				init();		
+			}, false); 
+		}
+	</script>
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-6098332-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+	<h1>HTML 5 Signature Demo</h1>
+	<div id="wrapper">
+		<canvas id="signature" width="350" height="200">
+			<p>Unfortunately, your browser is currently unsupported.</p>
+		</canvas>
+	</div>
+	
+	<input type="text" id="dataString" />
+	<img id="canvasImg" />
+</body>
+</html>

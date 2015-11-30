@@ -19,7 +19,9 @@ layout: default
 	</article>
 
 	<article>
-		<h1>Hackintosh PC build</h1>
+		<h1>Hackintosh PC Build</h1>
 		<p>I enjoy building custom PCs, and have built several of my own and for other people over the years. This one was different though, as it needed to run Apple MacOS X.</p>
+		<p>Thanks to the great community at <a href="http://www.tonymacx86.com">TonyMacx86</a> I was able to choose compatible parts, and perform the install of Mac OS X Yosemite without a hitch. Usual challenges with a Hackintosh include getting FaceTime and iMessage to work - but thanks to the guides on TonyMac these worked first time for me. Updating from Yosemite to El Capitan was also straightforward using the Apple App Store; no special process required.</p>
+		<p>You can see the parts I used for this build on <a href="http://pcpartpicker.com/user/crawlem/saved/DdtYcf">PCPartPicker</a>.
 	</article>
 </section>
