@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+
+	<title>{{ site.title }}</title>
+<!--
+Comila Template
+http://www.templatemo.com/tm-490-comila
+-->
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<!-- stylesheets css -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+
+  <link rel="stylesheet" href="css/et-line-font.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="css/vegas.min.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<link href='https://fonts.googleapis.com/css?family=Rajdhani:400,500,700' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+
+<!-- preloader section -->
+<section class="preloader">
+	<div class="sk-circle">
+       <div class="sk-circle1 sk-child"></div>
+       <div class="sk-circle2 sk-child"></div>
+       <div class="sk-circle3 sk-child"></div>
+       <div class="sk-circle4 sk-child"></div>
+       <div class="sk-circle5 sk-child"></div>
+       <div class="sk-circle6 sk-child"></div>
+      <div class="sk-circle7 sk-child"></div>
+       <div class="sk-circle8 sk-child"></div>
+       <div class="sk-circle9 sk-child"></div>
+       <div class="sk-circle10 sk-child"></div>
+       <div class="sk-circle11 sk-child"></div>
+       <div class="sk-circle12 sk-child"></div>
+     </div>
+</section>
+
+<!-- home section -->
+<section id="home">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-offset-2 col-md-8 col-sm-12">
+				<div class="home-thumb">
+					<h1 class="wow fadeInUp" data-wow-delay="0.4s">Hello, I'm Mark</h1>
+          			<h3 class="wow fadeInUp" data-wow-delay="0.6s">A <strong>family man</strong> and <strong>IT professional</strong> based in England</h3>
+          			<a href="#about" class="btn btn-lg btn-default smoothScroll wow fadeInUp hidden-xs" data-wow-delay="0.8s">About me</a>
+        			<a href="#feature" class="btn btn-lg btn-default smoothScroll wow fadeInUp" data-wow-delay="1.0s">Social</a>
+				</div>
+			</div>
+
+		</div>
+	</div>		
+</section>
+
+<!-- about section -->
+<section id="about">
+	<div class="container">
+		<div class="row">
+
+      <div class="col-md-6 col-sm-12">
+        <img src="images/about-img.png" class="img-responsive wow fadeInUp" alt="About">
+      </div>
+
+			<div class="col-md-6 col-sm-12">
+				<div class="about-thumb">
+					<div class="section-title">
+						<h1 class="wow fadeIn" data-wow-delay="0.2s">About me</h1>
+						<h3 class="wow fadeInUp" data-wow-delay="0.4s">{{ page.strapline }}</h3>
+					</div>
+					<div class="wow fadeInUp" data-wow-delay="0.6s">
+						{{ content }}
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+
+<!-- feature section -->
+<section id="feature">
+  <div class="container">
+    <div class="row">
+      
+      <svg preserveAspectRatio="none" viewBox="0 0 100 102" height="100" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" class="svgcolor-light">
+        <path d="M0 0 L50 100 L100 0 Z"></path>
+      </svg>
+
+      <div class="col-md-4 col-sm-6">
+        <div class="media wow fadeInUp" data-wow-delay="0.4s">
+          <div class="media-object media-left">
+            <a href="https://twitter.com/{{ site.twitter_username }}"><i class="icon icon-twitter"></i></a>
+          </div>
+          <div class="media-body">
+            <h2 class="media-heading"><a href="https://twitter.com/{{ site.twitter_username }}">Twitter</a></h2>
+            <p>General stuff and technology. Views are my own, not my employer's.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6">
+        <div class="media wow fadeInUp" data-wow-delay="0.8s">
+          <div class="media-object media-left">
+            <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}/"><i class="icon icon-linkedin"></i></a>
+          </div>
+          <div class="media-body">
+            <h2 class="media-heading"><a href="https://www.linkedin.com/in/{{ site.linkedin_username }}/">LinkedIn</a></h2>
+            <p>Feel free to connect if we've worked together. No recruiters please.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-8">
+        <div class="media wow fadeInUp" data-wow-delay="1.2s">
+          <div class="media-object media-left">
+            <a href="https://github.com/{{ site. github_username }}/"><i class="icon icon-toolbox"></i></a>
+          </div>
+          <div class="media-body">
+            <h2 class="media-heading"><a href="https://github.com/{{ site.github_username }}/">Github</a></h2>
+            <p>The odd public project I've worked on, including this website.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- footer section -->
+<footer>
+	<div class="container">
+		<div class="row">
+
+      <svg class="svgcolor-light" preserveAspectRatio="none" viewBox="0 0 100 102" height="100" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 L50 100 L100 0 Z"></path>
+      </svg>
+
+      <div class="col-md-4 col-sm-6">
+        <h2>crawleyweb</h2>
+          <div class="wow fadeInUp" data-wow-delay="0.3s">
+             <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque luctus lacus nulla, eget varius justo tristique ut. Etiam a tellus magna.</p> -->
+             <p class="copyright-text">Copyright &copy; 2018 Mark Crawley<br>
+             Designed by <a rel="nofollow" href="http://www.google.com/+templatemo" target="_parent">Templatemo</a></p>
+          </div>
+      </div>
+
+		</div>
+	</div>
+</footer>
+
+
+<!-- Back top -->
+<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+<!-- javscript js -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/vegas.min.js"></script>
+
+<script src="js/wow.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+</html>
