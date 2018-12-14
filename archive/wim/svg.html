@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Mark Crawley - Animation Demo</title>
+	<style>
+		#court {background-color:rgba(0,102,51,1)}
+		#nav {float:right}
+	</style>
+</head>
+<body>
+	<canvas id="court" width="480" height="900">Your browser does not support the HTML5 canvas element, sorry!</canvas>
+	<div id="nav"></div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var file = 'match/index.txt';
+			var index;
+			var csv;
+			var srv;
+			var interval;
+
+			$.get(file, function(data) {
+				index = data.split('\n');
+				$('<ul></ul>').appendTo($('#nav'));
+				for (var i=0; i<index.length; i++) {
+					if ($.trim(index[i]).substr(-3, 3) == 'prj') {
+						$('<li><a href="#' + index[i] + '" class="nav">' + parseFilename(index[i]) + '</a></li>').appendTo($('#nav ul'));
+					}
+				}
+				$('a.nav').click(function() {
+					$.get('match/' + $(this).attr('href').substr(1), function(data) {
+						srv = data.split('\n');
+						loadCanvas();
+					}, 'text').error(function(xhr, status, err) {
+						alert(err);
+					});
+				});
+			}, 'text').error(function(xhr, status, err) {
+				alert(err);
+			});
+
+			var gutter = 60;
+			var boundaryX = 480;
+			var boundaryY = 900;
+			var hawkeyeMaxX = 5; // Hawkeye max val for court width (deuce court->ad court)
+			var hawkeyeMinX = -5;
+			var hawkeyeMaxY = 14; // Hawkeye max val for court length (baseline->baseline)
+			var hawkeyeMinY = -14;
+
+			var canvas = document.getElementById('court');
+			var ctx;
+			if (canvas.getContext) {
+				ctx = canvas.getContext('2d');
+				if (ctx) {
+					ctx.lineWidth = 2; // Set default line width
+				}
+			}
+
+			var p1aX = boundaryX/2;
+			var p1aY = gutter;
+			var p2aX = boundaryX/2;
+			var p2aY = boundaryY-gutter;
+
+			// Rotate the H/E coords Clockwise (C) or Anti-Clockwise (AC) to match "camera 1" viewpoint
+			var rotateDir = 'AC';
+
+			var count = 0;
+
+			drawShapes();
+
+			function loadCanvas() {
+				if (interval) {
+					clearInterval(interval);
+				}
+				interval = setInterval(animate, 50); // 50ms = 20fps
+			}
+
+			function setPlayerPos() {
+				var line = srv[count].split(',');
+
+				var t1 = line[1].split(' ');
+				var t2 = line[2].split(' ');
+
+				var p1a_X = $.trim(t1[2]); // "x" means court width to us (deuce->ad court)
+				var p1a_Y = $.trim(t1[1]); // "y" means court length to us (baseline->baseline)
+				var p2a_X = $.trim(t2[2]);
+				var p2a_Y = $.trim(t2[1]);
+
+				//alert(p1a_X+'/'+p1a_Y +' '+ p2a_X+'/'+p2a_Y);
+
+				// Transform the H/E player's coordinates into canvas coordinates
+				// The Hawkeye data appears to be based on a rectangle (court) with long edge horizontal, with 0,0 in the center of the court
+				// Our viewpoint matches "camera 1" which is rectangle with long edge vertical, so we need to rotate as well as scale the coords
+				p1aX = convertX(p1a_X);
+				p1aY = convertY(p1a_Y);
+				p2aX = convertX(p2a_X);
+				p2aY = convertY(p2a_Y);
+			}
+
+			function convertX(x) {
+				var newX = boundaryX/2;
+				if (x > 0) {
+					newX = (x/hawkeyeMaxX)*(boundaryX/2)+(boundaryX/2);
+				} else {
+					newX = (boundaryX/2)-(x/hawkeyeMinX)*(boundaryX/2);
+				}
+				return newX;
+			}
+
+			function convertY(y) {
+				var newY = gutter;
+				if (y > 0) {
+					newY = (y/hawkeyeMaxY)*(boundaryY/2)+(boundaryY/2);
+				} else {
+					newY = (boundaryY/2)-(y/hawkeyeMinY)*(boundaryY/2);
+				}
+				return newY;
+			}
+
+			function animate() {
+				drawShapes();
+				setPlayerPos();
+
+				ctx.fillStyle = 'rgba(153,153,153,0.8)';
+				ctx.strokeStyle = '#000';
+
+				ctx.beginPath();
+				ctx.arc(p1aX,p1aY,10,0,Math.PI * 180, false);
+				ctx.fill();
+				ctx.stroke();
+
+				ctx.beginPath();
+				ctx.arc(p2aX,p2aY,10,0,Math.PI * 180, false);
+				ctx.fill();
+				ctx.stroke();
+
+				if (count < srv.length-2) {
+					count++;
+				} else {
+					count = 0;
+					clearInterval(interval);
+				}
+			}
+
+			function drawShapes() {
+				// Clear canvas
+				ctx.clearRect(0,0,boundaryX,boundaryY);
+				// Draw court
+				ctx.fillStyle = 'rgba(0,102,51,1)';
+				ctx.strokeStyle = '#FFF';
+				ctx.beginPath();
+				ctx.strokeRect(gutter,gutter,boundaryX-(gutter*2),boundaryY-(gutter*2));
+
+				// Service box
+				var sboxheight = (boundaryY-(gutter*2))/3.71428;
+				ctx.strokeRect(gutter+(boundaryX/8),(boundaryY/2)-sboxheight,boundaryX-(gutter*2)-((boundaryX/8)*2),2*sboxheight);
+
+				ctx.strokeRect(gutter+(boundaryX/8),gutter,boundaryX-(gutter*2)-((boundaryX/8)*2),boundaryY-(gutter*2)); // tramlines
+				ctx.moveTo(boundaryX/2,(boundaryY/2)-sboxheight);
+				ctx.lineTo(boundaryX/2,(boundaryY/2)+sboxheight); // service line
+				ctx.stroke();
+				ctx.beginPath();
+				ctx.moveTo(boundaryX/2,gutter);
+				ctx.lineTo(boundaryX/2,gutter+(gutter/6)); // centre line 1
+				ctx.stroke();
+				ctx.beginPath();
+				ctx.moveTo(boundaryX/2,boundaryY-gutter);
+				ctx.lineTo(boundaryX/2,boundaryY-gutter-(gutter/6)); // centre line 2
+				ctx.stroke();
+
+				ctx.strokeStyle = 'rgba(169,145,56,1)';
+				ctx.beginPath();
+				ctx.moveTo((gutter/2),(boundaryY/2));
+				ctx.lineTo(boundaryX-(gutter/2),(boundaryY/2)); // net
+				ctx.stroke();
+			}
+
+			function parseFilename(filename) {
+				var set = filename.substr(0,1);
+				var game = filename.substr(2,2);
+				var point = filename.substr(5,2);
+				var serve = filename.substr(8,1);
+				if (serve == 1) {
+					serve = '1st Serve';
+				} else {
+					serve = '2nd Serve';
+				}
+				return 'Set ' + set + ' Game ' + game + ' Point ' + point + ' ' + serve;
+			}
+		});
+	</script>
+	<script>
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-6098332-2']);
+		_gaq.push(['_trackPageview']);
+		(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+</body>
+</html>

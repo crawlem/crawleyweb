@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Image pan/zoom test</title>
+	<script type="text/javascript" src="modernizr.js"></script>
+	<script type="text/javascript">
+	// Load our canvas app
+	window.addEventListener('load', eventWindowLoaded, false);
+	function eventWindowLoaded() {
+		canvasApp();
+	}
+	
+	// Detect canvas support
+	function canvasSupport() {
+		return Modernizr.canvas;
+	}
+	
+	function canvasApp() {
+		var panning = false;
+		var windowWidth = 600;
+		var windowHeight = 300;
+		var windowX = 0;
+		var windowY = 0;
+		var clickX = 0;
+		var clickY = 0;
+		var startX = 0;
+		var startY = 0;
+		var maxX = 0;
+		var maxY = 0;
+		var maxScale = 1.4;
+		var minScale = 1;
+		var scale = 1.4;
+		
+		// Abort if browser doesn't support canvas
+		if (!canvasSupport()) {
+			return;
+		} else {
+			var theCanvas = document.getElementById("canvas");
+			var context = theCanvas.getContext("2d");
+		}
+		
+		// Render image function
+		function drawScreen() {
+			if (windowX < 0) {
+				windowX = 0;
+			}
+			if (windowX > maxX) {
+				windowX = maxX;
+			}
+			if (windowY < 0) {
+				windowY = 0;
+			}
+			if (windowY > maxY) {
+				windowY = maxY;
+			}
+			
+			context.drawImage(photo, windowX, windowY, windowWidth*scale, windowHeight*scale,
+			0, 0, windowWidth, windowHeight);
+			imgInLoaded();
+			imgOutLoaded();
+		}
+
+	
+		// Load the images
+		var imgIn = new Image();
+		imgIn.addEventListener('load', imgInLoaded , false);
+		imgIn.src = "in.png";
+		var imgOut = new Image();
+		imgOut.addEventListener('load', imgOutLoaded , false);
+		var photo = new Image();
+		imgOut.src = "out.png";
+		photo.addEventListener('load', eventPhotoLoaded , false);
+		photo.src = "c.gif";
+
+		function imgInLoaded() {
+			context.drawImage(imgIn, 20, 15);
+		}
+
+		function imgOutLoaded() {
+			context.drawImage(imgOut, 20, 50);
+		}
+
+		function eventPhotoLoaded() {
+			maxX = this.width;
+			maxY = this.height;
+			
+			// Center the image
+			windowX = (maxX/2)-((windowWidth*scale)/2);
+			windowY = (maxY/2)-((windowHeight*scale)/2);
+			drawScreen();
+		}
+
+		// Populate event X/Y mouse properties reliably
+		function fixEventXY(ev) {
+			if (ev.offsetX || ev.offsetX == 0) { // Opera
+				ev._x = ev.offsetX;
+				ev._y = ev.offsetY;
+			} else if (ev.layerX || ev.layerX == 0) { // Firefox
+				ev._x = ev.layerX;
+				ev._y = ev.layerY;
+			}
+			return ev;
+		}
+		
+		// Toggle pan only when mouse is dragging
+		theCanvas.addEventListener("mousedown", togglePan, false);
+		//theCanvas.addEventListener("mouseup", togglePan, false);
+		window.addEventListener("mouseup", togglePan, false);
+		function togglePan(ev) {
+			// Fix event x/y properties
+			fixEventXY(ev);
+
+			// We are no longer panning
+			if (ev.type == "mouseup") {
+				panning = false;
+
+				// Was this a click not a drag?
+				if (clickX == ev._x && clickY == ev._y) {
+					processClick(ev);
+				}
+			} else {
+				panning = true;
+				startX = ev._x;
+				startY = ev._y;
+				clickX = startX;
+				clickY = startY
+			}
+		}
+		
+		// Pan the image on the canvas
+		theCanvas.addEventListener("mousemove", pan, false);
+		window.addEventListener("mousemove", pan, false);
+		function pan(ev) {
+			if (panning) {
+				fixEventXY(ev);
+				
+				windowX += startX-ev._x;
+				windowY += startY-ev._y;
+
+				startX = ev._x;
+				startY = ev._y;
+				drawScreen();
+			}
+		}
+
+		// Handle user "click"s (rather than drags)
+		function processClick(ev) {
+			//alert(ev.clientX + "/" + ev.clientY);
+
+			var obj = theCanvas;
+			var top = 0;
+			var left = 0;
+			while (obj && obj.tagName != 'BODY') {
+				top += obj.offsetTop;
+				left += obj.offsetLeft;
+				obj = obj.offsetParent;
+			}
+
+			// return relative mouse position
+			var x = ev.clientX - left + window.pageXOffset;
+			var y = ev.clientY - top + window.pageYOffset;
+
+			//alert(x + "/" + y);
+
+			if (x <=57 && x >=20 && y <=57 && y>=20) { // Zoom in button
+				if (scale >= minScale) {
+					scale -= 0.1;
+					drawScreen();
+				}
+			} else if (x <=57 && x >=20 && y <=87 && y>=50) { // Zoom out button
+				if (scale <= maxScale) {
+					scale += 0.1;
+					drawScreen();
+				}
+			} else { // Load a hole page
+				
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+<h1>Image pan/zoom test</h1>
+	<canvas id="canvas" width="600" height="300">Your browser does not support HTML5 Canvas.</canvas>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!--
+This webcam page is created by TinCam webcam software, Version 1.08
+www.tincam.com
+31/05/2016 10:11:37
+-->
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+    <title>Bunkercam</title>
+  </head>
+
+  <body bgcolor="#8080FF" text="#FFFFFF">
+    <center>
+    <br><br>
+    <h2>Bunkercam</h2>
+    <br>
+
+    <table>
+      <tr><td align=right>
+        <img width=640 height=480 src="Webcam02.jpg" border=1 name="tcimage0" alt="Image will refresh every 0 Minutes 5 Seconds">
+      </td>
+      <td align=left>
+        <img width=640 height=480 src="Webcam01.jpg" border=1 name="tcimage1" alt="Image will refresh every 0 Minutes 5 Seconds">
+      </td></tr>
+    <tr>
+      <td colspan=2 align=center>
+Images update every few minutes.
+      </td>
+    </tr>
+    </table>
+
+    <script language="JavaScript" type="text/javascript">
+    <!--
+    var tcimages = new Array();
+    tcimages[0] = "Webcam02.jpg";
+    tcimages[1] = "Webcam01.jpg";
+    interval = 5000;
+
+    function Refresh() {
+      for (i=0; i<=1; i++) {
+        tmp = new Date();
+        tmp = "?" + tmp.getTime();
+        document.images["tcimage" + i].src = tcimages[i] + tmp;
+      }
+      setTimeout("Refresh()", interval);
+    }
+
+    Refresh();
+    // -->
+    </script>
+    </center>
+  </body>
+</html>

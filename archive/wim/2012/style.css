@@ -1,0 +1,57 @@
+body {font-family:calibri,arial,sans-serif}
+
+table {
+	border-width:1px;
+	border-spacing:2px;
+	border-style:outset;
+	border-color:#333;
+	border-collapse:collapse;
+	background-color:white;
+	clear:both
+}
+table th {
+	border-width:1px;
+	padding:1px;
+	border-style:inset;
+	border-color:#333;
+	background-color:#555;
+	font-weight:bold;
+	border-bottom:2px solid #333;
+	color:#FFF
+}
+table td {
+	border-width:1px;
+	padding:1px;
+	border-style:inset;
+	border-color:gray;
+	background-color:white;
+}
+
+table td, table th {
+	padding:2px
+}
+
+.partial {
+	font-style:italic
+}
+
+.total td {
+	background-color:#CCC;
+	font-weight:bold;
+	border-top:2px solid #333;
+	border-bottom:2px solid #333
+}
+
+ol {
+	list-type:none;
+	margin:0;
+	padding:0;
+	border:0
+}
+
+ol li {
+	display:block;
+	float:left;
+	margin-right:15px;
+	margin-bottom:20px
+}
