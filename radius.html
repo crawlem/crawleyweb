@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<title>Radius Test</title>
+		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAmrx_-_ciw1gJLBqXQCX70BTw5iYf6MPyfR0gsKY4rdFboqZH6BRJzTn2Xn7EsJte3ucuXe_k5iSBnA" type="text/javascript"></script>
+		<script type="text/javascript">
+
+		var EARTH_RADIUS = 6378.137; //in kilometres
+
+		var ADD = "Atlanta, GA";
+		var RADIUS = 350;
+		
+		function initialize() {
+			// Check GET parameters
+			var addparam = gup("ADD");
+			if (addparam != "") ADD = addparam;
+			
+			var radiusparam = gup("RADIUS");
+			if (radiusparam != "") RADIUS = radiusparam;
+			
+			// Set form values
+			document.getElementById("ADD").value = decode(ADD);
+			document.getElementById("RADIUS").value = RADIUS;
+			
+			centreMap();
+		}
+		
+		function decode(str) {
+			return unescape(str.replace(/\+/g, " "));
+		}
+		
+		function gup(name) {
+			name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+			var regexS = "[\\?&]"+name+"=([^&#]*)";
+			var regex = new RegExp(regexS);
+			var results = regex.exec(window.location.href);
+			if(results == null)
+				return "";
+			else
+				return results[1];
+		}
+		
+		function centreMap() {
+			if (GBrowserIsCompatible()) {
+				var geocoder = new GClientGeocoder();
+				geocoder.getLatLng(
+					ADD,
+					function(point) {
+						if (point) {
+							var map = new GMap2(document.getElementById("map_canvas"));
+							map.setCenter(point, 6);
+							var clt = point.lat();
+							var cln = point.lng();
+							
+							ctr = new GLatLng(clt, cln);
+					
+							// ground overlay
+							var boundaries = getBoundaries(ctr, RADIUS);
+							var oldmap = new GGroundOverlay("purple_circle.png", boundaries);
+							map.addControl(new GSmallMapControl());
+							map.addControl(new GMapTypeControl());
+							map.addOverlay(oldmap);
+						}
+					}
+				);
+				
+			}
+		}
+
+		function getBoundaries(centrePt, radius) {
+			var hypotenuse = Math.sqrt(2 * radius * radius);
+			var sw = getDestLatLng(centrePt, 225, hypotenuse);
+			var ne = getDestLatLng(centrePt, 45, hypotenuse);
+			return new GLatLngBounds(sw, ne);
+		}
+
+		function getDestLatLng(latLng, bearing, distance) {
+			var lat1 = latLng.latRadians();
+			var lng1 = latLng.lngRadians();
+			var brng = bearing*Math.PI/180; 
+			var dDivR = distance/EARTH_RADIUS;
+			var lat2 = Math.asin( Math.sin(lat1)*Math.cos(dDivR) + Math.cos(lat1)*Math.sin(dDivR)*Math.cos(brng) );
+			var lng2 = lng1 + Math.atan2(Math.sin(brng)*Math.sin(dDivR)*Math.cos(lat1), Math.cos(dDivR)-Math.sin(lat1)*Math.sin(lat2));
+			return new GLatLng(lat2/ Math.PI * 180, lng2/ Math.PI * 180);
+		}
+		</script>
+	</head>
+	<body onload="initialize()" onunload="GUnload()">
+		<form action="" method="get">
+		<input type="text" name="ADD" id="ADD"/> <input type="text" name="RADIUS" id="RADIUS" size="4"/>Km <button type="submit">Submit</button>
+		</form>
+		<div id="map_canvas" style="width: 640px; height: 480px"></div>
+	</body>
+</html>

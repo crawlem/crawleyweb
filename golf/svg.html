@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SVG Test</title>
+<style>
+#surfaceElement { border: 1px solid #000 }
+</style>
+</head>
+<body>
+<h1>SVG Test</h1>
+
+<div id="surfaceElement"></div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.7.2/dojo/dojo.js" data-dojo-config="async: true"></script>
+<script>
+    require(["dojox/gfx", "dojox/gfx/Moveable", "dojo/domReady!"], function(gfx,Moveable) {
+        var surface = gfx.createSurface("surfaceElement", 600, 300);
+
+	var controls = surface.createGroup();
+	var zoomIn = surface.createGroup();
+	zoomIn.createRect({ x: 20, y: 20, width: 20, height: 20 }).setStroke("#000").setFill("#FFF");
+	zoomIn.createRect({ x: 29, y: 25, width: 2, height: 10 }).setFill("#000");
+	zoomIn.createRect({ x: 25, y: 29, width: 10, height: 2 }).setFill("#000");
+	var zoomOut = surface.createGroup();
+	zoomOut.createRect({ x: 20, y: 45, width: 20, height: 20 }).setStroke("#000").setFill("#FFF");
+	zoomOut.createRect({ x: 25, y: 54, width: 10, height: 2 }).setFill("#000");
+	controls.add(zoomIn);
+	controls.add(zoomOut);
+
+	var map = surface.createGroup();
+
+	var h1 = surface.createGroup();
+	var h1_bg = h1.createPath("m100 100 100 0 0 100c0 50-50 50-100 0s-50-100 0-100z")
+    .setStroke("#CCC").setFill("#0F0");
+	map.add(h1);
+
+	var h2 = surface.createGroup();
+	var h2_bg = h2.createPath("m300 100 100 0 0 100c0 50-50 50-100 0s-50-100 0-100z")
+    .setStroke("#CCC").setFill("#0F0");
+	map.add(h2);
+
+	new Moveable(map);
+
+	zoomIn.connect("onclick", function(e) {
+		map.applyTransform(dojox.gfx.matrix.scale({ x: 1.5, y: 1.5 }));
+	});
+	zoomOut.connect("onclick", function(e) {
+		map.applyTransform(dojox.gfx.matrix.scale({ x: 0.666, y: 0.666 }));
+	});
+
+	h1.connect("onmouseenter", function(e) {
+		h1_bg.setStroke("#000");
+	});
+	h1.connect("onmouseleave", function(e) {
+		h1_bg.setStroke("#CCC");
+	});
+	h2.connect("onmouseenter", function(e) {
+		h2_bg.setStroke("#000");
+	});
+	h2.connect("onmouseleave", function(e) {
+		h2_bg.setStroke("#CCC");
+	});
+    });
+</script>
+</body>
+</html>

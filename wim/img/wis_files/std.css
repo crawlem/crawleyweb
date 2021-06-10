@@ -1,0 +1,39 @@
+body
+ { background-image:url(../gfx/bg_ibm2.jpg); background-repeat:no-repeat;
+   background-position:top center; background-attachment:fixed;
+   background-color:black;
+ 
+   font-family:Arial; font-size:110%; color:white;
+ }
+a, a:hover, a:active, a:focus { outline:0; }
+input::-moz-focus-inner { border: 0; }
+
+.noclick { color:#999999; }
+
+img { border:none; }
+
+td { padding:10px; }
+ 
+.cont_text
+ { max-width:400px; text-align:left;
+   padding:10px; padding-left:30px;
+   background-image:url(bg_60p.png);
+ }
+.cont_text li
+ { padding-bottom:10px; }
+
+.logo
+ { position:absolute; bottom:30px; right:30px; display:none; }
+ 
+#container{
+height:600px; /*the element to center with no specific height needs to be positioned in relation to a parent element with fixed height*/
+position:relative; /*relative position applied to the parent element to next be able to position its content in a absolute way*/
+}
+#sub_container{
+position:absolute; /*a sub element positioned in an absolute way in relation to its parent element ‘container’*/
+top:50%; /*the top border of the element is positioned at half of the available height of the parent element*/
+}
+#centered_content{
+position:relative; /*the element to center is positioned in a relative way in relation to its parent element ’sub_container’*/
+top:-50%; /*the top border of the element to center is moved upwards of 50% of the height*/
+} 
